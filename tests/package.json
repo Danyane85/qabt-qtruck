@@ -1,0 +1,12 @@
+{
+  "name": "qtruck-tests",
+  "version": "Projeto de testes de ponta a ponta na web app Qtruck",
+  "main": "Dany",
+  "author": "Dany",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^10.7.0",
+    "cypress-browser-permissions": "^1.1.0",
+    "cypress-mongodb": "^5.0.1"
+  }
+}
