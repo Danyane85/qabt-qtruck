@@ -27,7 +27,7 @@ describe('Signup', ()=> {
     it.only('não deve cadastrar com instagram duplicado', ()=> {
      
         const user = {
-            name: 'Erick Jacquin',
+            name: 'Erick Jacquin 2',
             instagram: '@jacquin',
             password: 'pwd123'
         }
@@ -37,7 +37,6 @@ describe('Signup', ()=> {
         signupPage.go()
         signupPage.form(user)
         signupPage.submit()
-      
         signupPage.modal.haveText('Instagram já cadastrado!')
     })
 })
