@@ -6,13 +6,13 @@ class LoginPage {
         this.modal = modal
     }
 
-    go() {
-        cy.visit('/')
+    go(lat='-16.6478',long='-49.4981') {
+        cy.visit('/',this.mockLocation(lat,long))
 
     }
 
     form(user) {
-        if (user.instagran) cy.get('input[name=instagram]').type(user.instagran)
+        if (user.instagram) cy.get('input[name=instagram]').type(user.instagram)
         if (user.password) cy.get('input[name=password]').type(user.password)
 
     }
@@ -21,6 +21,20 @@ class LoginPage {
         cy.contains('button', 'Entrar').click()
 
     }
+
+    mockLocation(latitude, longitude) {
+        return {
+        onBeforeLoad(win) {
+            cy.stub(win.navigator.geolocation, "getCurrentPosition").callsFake((cb, err)=>{
+                if(latitude && longitude){
+                    return cb ({coords: {latitude, longitude}})
+                }
+                throw err ({code: 1})
+            });
+          }
+        }
+    }
 }
+
 
 export default new LoginPage()

@@ -4,14 +4,19 @@ import mapPage from '../support/pages/Map'
 
 
 describe('Login', () => {
-  it('deve logar com sucesso', () => {
 
-    const user = {
-      name: 'Maria',
-      instagran: '@maria',
-      password: 'maria123'
-    }
+   beforeEach(()=>{
+    cy.fixture('login-users').then(function(users) {
+      this.users = users
 
+    })
+   })
+
+  it.only('deve logar com sucesso', function () {
+
+    const user = this.users.success
+    cy.apiCreateUser(user)
+     
     loginPage.go()
     loginPage.form(user)
     loginPage.submit()
@@ -20,12 +25,9 @@ describe('Login', () => {
 
     
   })
-  it('nao deve logar com senha invalida', () => {
+  it('nao deve logar com senha invalida', function() {
 
-    const user = {
-      instagran: '@maria',
-      password: 'ma123'
-    }
+    const user = this.users.inv_pass
 
     loginPage.go()
     loginPage.form(user)
@@ -50,11 +52,8 @@ describe('Login', () => {
 
   })
 
-  it('instagram deve ser obrigatório', () => {
-    const user = {
-      instagram: '',
-      password: 'maria123'
-    }
+  it('instagram deve ser obrigatório', function (){
+    const user = this.users.required_insta
 
     loginPage.go()
     loginPage.form(user)
@@ -63,10 +62,8 @@ describe('Login', () => {
     
   })
 
-  it('senha deve ser obrigatória', () => {
-    const user = {
-      instagran: '@maria' 
-    }
+  it('senha deve ser obrigatória', function() {
+    const user = this.users.required_pass
 
     loginPage.go()
     loginPage.form(user)

@@ -8,5 +8,9 @@
     "cypress": "^10.7.0",
     "cypress-browser-permissions": "^1.1.0",
     "cypress-mongodb": "^5.0.1"
+  },
+  "dependencies": {
+    "@shelex/cypress-allure-plugin": "^2.31.0",
+    "allure-commandline": "^2.18.1"
   }
 }
