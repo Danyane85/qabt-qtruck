@@ -12,7 +12,7 @@ describe('Login', () => {
     })
    })
 
-  it.only('deve logar com sucesso', function () {
+  it('deve logar com sucesso', function () {
 
     const user = this.users.success
     cy.apiCreateUser(user)
